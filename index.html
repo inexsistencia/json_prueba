@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)file:///home/dev/Escritorio/inicio.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel='stylesheet' href='http://sirenasxmayor.com.ar/final/css/formularios.css' />
+	<!--LINKS ESTILOS -->	    
+		<style>
+			@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono&subset=latin,latin-ext);
+			body {   font-family: 'Oxygen Mono', sans-serif;}
+			h1,h2,h2,h4,h5,h6{font-family: 'Oxygen Mono', sans-serif;}
+			h1,h2,h2,h4,h5{margin: 0 auto;padding: .3em;}
+			h5{font-size: 1.1em;}
+			.page{	
+				background-color:rgba(49, 46, 43, .5);
+				box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.25);
+				margin: 0 auto 1em auto;
+				padding: .4em 0;
+				/*max-width: 980px; estas medidas pueden variar */
+				min-width: 400px; /*estas medidas pueden variar */
+				text-align: center;
+				}
+			.box{
+				background-color: #fdfdfd;
+				background-clip: padding-box;
+				box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.25);
+				display: block;
+				margin: .4em auto;
+				line-height: 18px;
+				overflow: hidden;
+				padding: .2em 0.25%;
+				position: relative;
+				width: 98%;
+				}
+			.ibox{
+				background-color: #fdfdfd;
+				background-clip: padding-box;
+				display: inline-block;
+				line-height: 18px;
+				margin: .4em 0.25%;
+				overflow: hidden;
+				padding: .2em 0.5%;
+				position: relative;
+				min-width: 4%;
+				width: 98%;
+				}
+			.c{text-align: center;}
+			.ibox,.box{border-radius: .3em;}
+			.w100{width: 98%;}
+			.w50{width: 48%;}
+			.w20{width: 17%;}
+			article a{text-decoration: none; text-align: center; color: #000; text-shadow: rgba(150, 150, 150, 0.729412) 1px 1px 3px;}
+			article.elemento:hover a{color:#fff;}
+			.jira:hover{color: #fff;background-color: #556270;}
+			.confluence:hover{color: #fff;background-color: #4ECDC4;}
+			.fisheye:hover{color: #fff;background-color: #C7F464;}
+			.github:hover{color: #fff;background-color: #F8CA00;}
+			.elvira:hover{color: #fff;background-color: #BD1550;}
+			.comun:hover{color: #000;background-color: #C7F464;}
+			.img{ max-width: 205px;}
+			input[type="text"]#gitUser{min-width: 190px;}
+			#colorNombre{color: #BD1550;}
+			#gitContent{vertical-align: top;}
+			#regConten{background-color: #F8CA00;max-width: 700px;}
+			#registro{min-width: 200px;}
+			#registro:hover{color: #fff;background-color: #F8CA00;}
+			.datosInput{width: 27%;min-width: 200px;}
+			@media screen and (max-width: 800px) {
+				h1,h2,h2,h4,h5,h6{ font-size: 98%;}
+			}
+			@media screen and (max-width: 500px) {
+				.w50,.w20{width: 98%;}
+				.w100{width: 48%;}
+
+				h2{display: inline-block; vertical-align: middle; font-size: 1.5em;}
+				.elemento a img{display: inline-block;max-width: 60px; vertical-align: top; float:right;}
+
+			}
+		</style>
+	<!-- /*/*/*/*/*/*/ -->
+
+	<!--SCRIPTS Y PLUGINS-->
+		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+		<script type='text/javascript' src='http://zeptojs.com/zepto-docs.min.js'></script>
+		<script>
+		$(function(){
+			var localUsrDatos ={};
+
+			if (localStorage.usrDatos!=undefined) {
+				
+				localUsrDatos = JSON.parse(localStorage.usrDatos);
+					console.log('login nombre tiene -' + localUsrDatos.usrNombre);
+					console.log('login mail tiene -' + localUsrDatos.usrGit);
+					console.log('login psw tiene -' + localUsrDatos.usrContrasenia);
+
+
+				var saludo="<h1>hola <span id='colorNombre'>"+localUsrDatos.usrNombre+"</span></h1>";
+
+				var tabGit="<a href='https://github.com/"+localUsrDatos.usrGit+"' target='_blank'>"+
+								"<h2>GitHub</h2>"+
+								"<img src='https://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Mark.png' alt='' class='box w100 img'>"+
+							"</a>";
+				$('#contenedor').css('display','block');
+				$('#saludo').html(saludo);
+				$('#gitContent').html(tabGit);
+			}
+			else{
+				var registroForm = "<section class='box' id='regConten'>"+
+									"<h2 class='c'>iniciar datos</h2><img src='https://lh3.googleusercontent.com/-QSIlN7rTc8Y/Uw9maOl8h0I/AAAAAAAAAOM/K9vR05Ivnq0/s72-no/unnamed.gif' class='box w20'>"+
+									"<form action='' class='box' id>"+
+										"<input type='text' placeholder='tu nombre' id='usrNombre' class='datosInput'>"+
+										"<input type='text' placeholder='ingresa tu usuario de GItHub' id='usrGit' class='datosInput'>"+
+										"<input type='button' value='GURDAR' id='registro' class='datosInput'>"+
+									"</form>"+
+									"</section>";
+
+				$('#contenedor').css('display','none');
+				$('#page').html(registroForm);
+			};
+
+			$('#registro').click(function(){
+				var usrDatos ={};
+				usrDatos.usrNombre 		= $('#usrNombre').val();					
+				usrDatos.usrGit 		= $('#usrGit').val();
+					console.log('se creo ' + usrDatos.usrNombre);
+					console.log('se creo ' + usrDatos.usrGit);
+
+				localStorage.usrDatos = JSON.stringify(usrDatos);
+
+				window.location.assign("index.html");
+			});
+		});
+		</script>
+	<!-- /*/*/*/*/*/*/ -->
+</head>
+
+<body>
+	<section id="page">
+		<h1 id='saludo'>hola: </h1>
+		<section class="box w80" id='contenedor'>
+			<article class="ibox w20 elemento jira">
+				<a href="https://jira.olx.com/browse/PROC" target="_blank">
+					<h2>Jira</h2>
+					<img src="https://lh6.googleusercontent.com/-pqR3hzsVRDc/UwdIeuLw6AI/AAAAAAAAANo/ida3-Zg2Kng/s200-no/jira_logo_landing.png" alt="" class="box w100 img">
+				</a>
+			</article>
+			<article class="ibox w20 elemento confluence">
+				<a href="https://confluence.olx.com/display/PROC/Home" target="_blank">
+					<h2>Confluenc</h2>
+					<img src="https://lh4.googleusercontent.com/-4sUZ6eCqozY/UwdId1IfkdI/AAAAAAAAANQ/fTQsHbH4tiA/s200-no/confluence_logo_landing.png" alt="" class="box w100 img">
+				</a>
+			</article>
+			<article class="ibox w20 elemento fisheye">
+				<a href="http://fisheye.olx.com.ar/changelog/Processes" target="_blank">
+					<h2>Fisheye</h2>
+					<img src="https://lh3.googleusercontent.com/-gAZrACSBkHA/UwdIeXkk1dI/AAAAAAAAANc/r_eYlZl3Bms/s200-no/fisheye_logo_landing.png" alt="" class="box w100 img">
+				</a>
+			</article>
+			<article class="ibox w20 elemento github" id='gitContent'>
+				
+			</article>
+			<article class="ibox w20 elemento elvira">
+				<a href="http://elvira.olx.com.ar/" target="_blank">
+					<h2>Elvira</h2>
+					<img src="https://lh6.googleusercontent.com/-tZ-S525R0SQ/UwTtRfw0fDI/AAAAAAAAAMI/ENw2QFk-2PY/s302/2014-02-19.gif" alt="" class="box w100 img">
+				</a>
+			</article>
+			<article class="ibox w20 elemento confluence">
+				<a href="https://www.google.com/calendar/render" target="_blank">
+					<h2>calendar</h2>
+					<img src="http://icons.iconarchive.com/icons/visualpharm/icons8-metro-style/256/Very-Basic-Calendar-icon.png" alt="" class="box w100 img">
+				</a>
+			</article>
+			<article class="ibox w20 elemento elvira">
+				<a href="http://sh.olx.com/spamhandler/" target="_blank">
+					<h2>spam handler</h2>
+					<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQQp-nCaWsPhIUC4sDhYpOn5XP6w-o4e6l2RbY6XyewYmnF8V3D" alt="" class="box w100 img">
+				</a>
+			</article>
+			<article class="ibox w20 elemento github">
+				<a href="https://confluence.olx.com/display/SM/Category+tree+projects+-+Q1+Schedule" target="_blank">
+					<h2>Q1 Schedule</h2>
+					<img src="https://lh3.googleusercontent.com/-TucbT-mmuDw/UyhsPNZFC6I/AAAAAAAAASw/gWMqw1W1oy4/s225-no/descarga.jpg" alt="" class="box w100 img">
+				</a>
+			</article>
+			<!--<article class="ibox w20 elemento fisheye">
+				<a href="https://confluence.olx.com/display/SM/Category+tree+projects+-+Q1+Schedule" target="_blank">
+					<h2>Q1 Schedule</h2>
+					<img src="https://confluence.olx.com/download/attachments/425986/global.logo?version=4&modificationDate=1394196531000&api=v2" alt="" class="box w100 img">
+				</a>
+			</article> -->
+		</section>
+	</section>
+</body>
+</html>

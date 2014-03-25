@@ -1,0 +1,76 @@
+{
+  "states": 
+  [
+    {
+     "stateId":157,
+     "stateName":"buenos aires",
+     "cities": [
+        { 
+          "cityId":1235,
+          "cityName":"la plata",
+          "neighborhood": [
+                "laplata barrio 1",
+                "laplata barrio 2",
+                "laplata barrio 3",
+                "laplata barrio 4",
+                "laplata barrio 5"
+              ]
+        },
+        { 
+          "cityId":4854,
+          "cityName":"tandil",
+          "neighborhood": [
+              "tandil barrio 1",
+              "tandil barrio 2",
+              "tandil barrio 3",
+              "tandil barrio 4",
+              "tandil barrio 5"
+            ]
+        },
+        { 
+          "cityId":9754,
+          "cityName":"gesel",
+              "neighborhood": [
+                "gesel barrio 1",
+                "gesel barrio 2",
+                "gesel barrio 3",
+                "gesel barrio 4",
+                "gesel barrio 5"
+              ]
+        }        
+      ]
+    },
+    {"stateId":129,
+     "stateName":"cordoba",
+     "cities": [
+        { "cityName":"carlos paz",
+          "neighborhood": [
+                "carlospaz barrio 1",
+                "carlospaz barrio 2",
+                "carlospaz barrio 3",
+                "carlospaz barrio 4",
+                "carlospaz barrio 5"
+              ]
+        },
+        {"cityName":"uritorco",
+         "neighborhood": [
+              "uritorco barrio 1",
+              "uritorco barrio 2",
+              "uritorco barrio 3",
+              "uritorco barrio 4",
+              "uritorco barrio 5"
+            ]
+        },
+        {"cityName":"cosquin",
+              "neighborhood": [
+                "cosquin barrio 1",
+                "cosquin barrio 2",
+                "cosquin barrio 3",
+                "cosquin barrio 4",
+                "cosquin barrio 5"
+              ]
+        }        
+      ]
+    }
+  ]
+}

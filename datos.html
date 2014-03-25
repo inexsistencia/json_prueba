@@ -1,0 +1,94 @@
+
+<!--SCRIPTS Y PLUGINS-->
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+<script type='text/javascript' src='http://zeptojs.com/zepto-docs.min.js'></script>
+<script language="javascript">
+$(document).ready(function(){
+
+    var datosPais;
+    var la = 'cosas';
+
+
+
+
+
+
+$.getJSON('data.json', function(datosPais) {
+    
+    $.each(datosPais.states, function(indice, contenido){
+        $('#states').append('<option value="'+indice+'">'+contenido.stateName+'</option>\n');
+    });
+
+    $('#states').change(function () {
+        var str = "";
+        $( "#states option:selected" ).each(function() {
+            var i = $( "#states option:selected" ).val();
+            console.log(i);
+            $.each(datosPais.states, function(indice, states){
+                console.log('ciudades'+states[i].cities.cityName);
+                $.each(states.cities, function(indice, cities){
+                    //console.log('ciudades'+cities.cityName[1]);
+                    $('#cities').append('<option value="'+indice+'">'+cities.cityName+'</option>\n');
+
+                });
+
+            });
+            str += $( this ).text() + " ";
+        });
+    $( "#seccionada" ).text( str );
+  })
+  .change();
+    /*$.each(datosPais.states.cities, function(indice, contenido){
+        $('#cities').append('<option value="'+contenido.cityId+'">'+contenido.cityName+'</option>\n');
+    });*/
+
+    //
+
+
+
+});
+
+    /////original----------_>>>>>>>>>>
+       $("#marca").change(function () {
+               $("#marca option:selected").each(function () {
+                elegido=$(this).val();
+                $.post("modelos.php", { 
+                    elegido: elegido }, 
+                    function(data){
+                        $("#modelo").html(data);
+                    }
+                );            
+            });
+       });
+    ////-------------------->>>>>>>>>
+});
+
+
+</script>
+<div id="salida">
+    <select id="states" name="state"></select>
+    <select id="cities" name="cities"></select>
+</div>
+<br>
+<br>
+<div id="seccionada"></div>
+<br>
+<br>
+<br>
+<p>Marca: 
+<select name="marca" id="marca">    
+    <option value="1">Renault</option>
+    <option value="2">Seat</option>
+    <option value="3">Peugeot</option>    
+</select></p>
+<p>Modelo:
+<select name="modelo" id="modelo">    
+    <option value="1">4</option>
+    <option value="2">5</option>
+    <option value="3">7</option>
+    <option value="4">21</option>
+    <option value="5">Scennic</option>
+    <option value="6">Traffic</option>
+</select></p>
+
+
