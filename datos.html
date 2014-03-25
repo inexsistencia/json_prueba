@@ -21,16 +21,11 @@ $.getJSON('data.json', function(datosPais) {
     });
 
     //incert cities
-
-    $('#states').change(function () {
-        
+    $('#states').change(function () {        
         $('#states option:selected').each(function() {
-
             idState = $('#states option:selected').val();
             var selectedState = datosPais.states[idState];
-
-            $('#cities').html('');
-            
+            $('#cities').html('');            
             $.each(selectedState.cities, function(indice, city){
                 $('#cities').append('<option value="'+indice+'">'+city.cityName+'</option>\n');
             });
@@ -43,10 +38,7 @@ $.getJSON('data.json', function(datosPais) {
                     var selectedCityNeighborhood = neighborhood[x];
                     $('#neighborhood').append('<option value="'+ x +'">'+selectedCityNeighborhood+'</option>\n');
                 }
-            });
-
-            
-
+            });      
         });
     });
 
