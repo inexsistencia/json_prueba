@@ -15,35 +15,40 @@ $(document).ready(function(){
 
 $.getJSON('data.json', function(datosPais) {
     
+    //incert states
     $.each(datosPais.states, function(indice, contenido){
         $('#states').append('<option value="'+indice+'">'+contenido.stateName+'</option>\n');
     });
 
+    //incert cities
+
     $('#states').change(function () {
-        var str = "";
-        $( "#states option:selected" ).each(function() {
-            var i = $( "#states option:selected" ).val();
-            console.log(i);
-            $.each(datosPais.states, function(indice, states){
-                console.log('ciudades'+states[i].cities.cityName);
-                $.each(states.cities, function(indice, cities){
-                    //console.log('ciudades'+cities.cityName[1]);
-                    $('#cities').append('<option value="'+indice+'">'+cities.cityName+'</option>\n');
+        
+        $('#states option:selected').each(function() {
 
-                });
+            idState = $('#states option:selected').val();
+            var selectedState = datosPais.states[idState];
 
+            $('#cities').html('');
+            
+            $.each(selectedState.cities, function(indice, city){
+                $('#cities').append('<option value="'+indice+'">'+city.cityName+'</option>\n');
             });
-            str += $( this ).text() + " ";
+            $('#cities').change(function () {
+                $('#neighborhood').html('');
+                idcity = $('#cities option:selected').val();
+                var selectedCity = datosPais.states[idState].cities[idcity];
+                var neighborhood= datosPais.states[idState].cities[idcity].neighborhood;
+                for (var x in neighborhood){
+                    var selectedCityNeighborhood = neighborhood[x];
+                    $('#neighborhood').append('<option value="'+ x +'">'+selectedCityNeighborhood+'</option>\n');
+                }
+            });
+
+            
+
         });
-    $( "#seccionada" ).text( str );
-  })
-  .change();
-    /*$.each(datosPais.states.cities, function(indice, contenido){
-        $('#cities').append('<option value="'+contenido.cityId+'">'+contenido.cityName+'</option>\n');
-    });*/
-
-    //
-
+    });
 
 
 });
@@ -66,8 +71,11 @@ $.getJSON('data.json', function(datosPais) {
 
 </script>
 <div id="salida">
-    <select id="states" name="state"></select>
+    <select id="states" name="state">
+        <option>chose a state</option>
+    </select>
     <select id="cities" name="cities"></select>
+    <select id="neighborhood" name="neighborhood"></select>
 </div>
 <br>
 <br>

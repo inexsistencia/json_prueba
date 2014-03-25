@@ -71,6 +71,45 @@
               ]
         }        
       ]
+    },
+    {
+     "stateId":123,
+     "stateName":"chaco",
+     "cities": [
+        { 
+          "cityId":1565,
+          "cityName":"la plata",
+          "neighborhood": [
+                "laplata barrio 1",
+                "laplata barrio 2",
+                "laplata barrio 3",
+                "laplata barrio 4",
+                "laplata barrio 5"
+              ]
+        },
+        { 
+          "cityId":4878,
+          "cityName":"tandil",
+          "neighborhood": [
+              "tandil barrio 1",
+              "tandil barrio 2",
+              "tandil barrio 3",
+              "tandil barrio 4",
+              "tandil barrio 5"
+            ]
+        },
+        { 
+          "cityId":3454,
+          "cityName":"gesel",
+              "neighborhood": [
+                "gesel barrio 1",
+                "gesel barrio 2",
+                "gesel barrio 3",
+                "gesel barrio 4",
+                "gesel barrio 5"
+              ]
+        }        
+      ]
     }
   ]
 }
